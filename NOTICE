@@ -1,0 +1,12 @@
+License: PolyForm Noncommercial License 1.0.0
+URL:     https://polyformproject.org/licenses/noncommercial/1.0.0/
+
+The full license text is in the LICENSE file at the repository root.
+
+This project's source may be used freely for any NONCOMMERCIAL purpose,
+including academic research, teaching, and evaluation. COMMERCIAL use requires
+a separate license from the author.
+
+Third-party dependencies retain their own licenses:
+  Microsoft SEAL (MIT), EMP-toolkit (MIT), FLINT (LGPL-2.1+), GMP (LGPL-3/GPL-2),
+  MPFR (LGPL-3), ZeroMQ (MPL-2.0), nlohmann/json (MIT), GoogleTest (BSD-3).

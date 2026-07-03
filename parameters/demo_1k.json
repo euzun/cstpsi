@@ -1,0 +1,18 @@
+{
+  "name": "demo_1k",
+  "description": "Demo config: D=1k, N=64 (matches the experiment harness shape).",
+  "protocol_params": { "N": 64 },
+  "database_params": { "nrof_que_ids": 1200 },
+  "performance_params": {
+    "m": 4096, "partition_size": 32, "nrof_splits": 1,
+    "nrof_collisions": 1, "nrof_online_threads": 1
+  },
+  "seal_params": { "poly_modulus_degree": 4096, "plain_modulus": 8519681 },
+  "dataset": {
+    "format": "csv",
+    "enrollment_path": "demo/data/enr_1k_lbl23bit.csv",
+    "query_path": "demo/data/qry_1k.csv",
+    "output_path": "demo/results/demo_output.csv",
+    "enr_bits": 10, "enr_total": 1000
+  }
+}

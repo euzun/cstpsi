@@ -1,0 +1,23 @@
+# Keep the build context small and hermetic: never copy local build output,
+# git metadata, agent tooling, or generated experiment artifacts into the image.
+.git
+.gitignore
+.gitattributes
+build/
+cmake-build-*/
+.claude/
+.beads/
+.memory/
+.DS_Store
+**/.DS_Store
+**/__pycache__/
+*.pyc
+experiments/results/
+experiments/benchmark_datasets/
+experiments/configs/gen_*.json
+claims/repro-table/repro_table.tex
+claims/repro-table/repro_table.md
+demo/data/
+demo/results/
+docs/
+*.bak

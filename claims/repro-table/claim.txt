@@ -1,0 +1,41 @@
+CLAIM: Head-to-head performance of CSTPSI vs. the STLPSI baseline.
+
+WHAT IS CLAIMED
+  Across database sizes D in {1K, 10K, 100K, 1M}, label sizes {23-bit, 16-byte,
+  32-byte, 64-byte}, and thread counts {1, 4, 8}, CSTPSI matches or beats the
+  no-caching STLPSI baseline on per-query online time, and its advantage grows
+  with label size (from roughly parity at the smallest label to an order of
+  magnitude at the larger labels). CSTPSI also sends less data per query at
+  small-to-moderate databases. Correctness holds throughout: false-reject rate
+  is zero and the multi-token configuration (T=2) admits no false accept.
+
+HOW TO REPRODUCE
+  bash claims/repro-table/run.sh
+  (defaults: 2 true-positive + 2 true-negative queries per cell; databases
+  1K/10K/100K; threads 1/4/8; both modes. Override with env vars TP, TN, SIZES,
+  LABELS, THREADS; set FULL=1 to also run the 1M rows, which are slow.)
+
+  The script generates the benchmark databases, runs every cell, collects the
+  per-cell measurements, and prints the table (also writing repro_table.tex).
+
+METRIC DEFINITIONS (applied identically to both protocols)
+  per-query online time  = total_online_ms / (n_tp + n_tn) / 1000   seconds
+  per-query communication = net_total_bytes / (n_tp + n_tn) / 2^20  MiB
+  speedup                 = STLPSI_time / CSTPSI_time
+  comm. saving            = (STLPSI_comm - CSTPSI_comm) / STLPSI_comm
+  The garbled circuit runs once per session for CSTPSI and once per round for
+  STLPSI; dividing the session total by the query count amortizes that one-time
+  cost the same way for both, so the ratio is a fair comparison.
+
+EXPECTED OUTPUT
+  A table in the format of the paper's head-to-head table. See
+  expected/expected_table.md for the values reported in the paper.
+
+WHAT MUST MATCH vs. WHAT MAY DIFFER
+  Reproduced (qualitative, machine-independent): CSTPSI is faster than STLPSI
+  with the gap widening in label size; CSTPSI's per-query communication is lower
+  at small-to-moderate D; FRR = 0 and FAR = 0 at T=2 in every cell.
+  May differ: absolute timings are hardware-dependent, and both timing and
+  communication shift slightly run-to-run (random data) and with the query
+  count. Every cell here is measured directly, so the numbers are empirical and
+  land in the same ballpark as the paper rather than matching it exactly.

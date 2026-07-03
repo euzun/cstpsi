@@ -1,0 +1,119 @@
+# Build directories
+build/
+cmake-build-*/
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+Makefile
+compile_commands.json
+
+# Prerequisites
+*.d
+
+# Compiled Object files
+*.slo
+*.lo
+*.o
+*.obj
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Linker files
+*.ilk
+
+# Debugger Files
+*.pdb
+
+# Compiled Dynamic libraries
+*.so
+*.dylib
+*.dll
+
+# Fortran module files
+*.mod
+*.smod
+
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+*.lib
+
+# Executables
+*.exe
+*.out
+*.app
+
+# debug information files
+*.dwo
+
+# macOS metadata
+.DS_Store
+**/.DS_Store
+
+# Editor / tooling caches
+.cache/
+.claude/
+
+# Experiment outputs
+experiments/results/
+experiments/benchmark_datasets/
+*_partial.csv
+
+# Demo scratch: generated integer-set CSVs + demo outputs (regenerated on demand
+# by experiments/datagen.py; only the demo/data + demo/results READMEs are tracked).
+demo/data/enr_*.csv
+demo/data/qry_*.csv
+demo/data/expected_*.csv
+demo/results/
+demo/__pycache__/
+
+# Experiment venv + large/derived embedding data. The two .bin the harness uses
+# are SHIPPED with the artifact (committed below) so a fresh clone is self-contained;
+# everything else under data/ (e.g. the unused _fpb variant, scratch) stays ignored.
+experiments/.venv/
+experiments/data/*
+!experiments/data/deep1b_E1000000_Q10000_L256.bin
+!experiments/data/lfw_embeddings.bin
+experiments/*.p
+
+# Python bytecode cache
+__pycache__/
+*.pyc
+
+# IDE config
+.idea/
+
+# LaTeX build artifacts (under docs/paper/)
+docs/paper/*.aux
+docs/paper/*.bbl
+docs/paper/*.blg
+docs/paper/*.log
+docs/paper/*.out
+docs/paper/*.toc
+docs/paper/*.fls
+docs/paper/*.fdb_latexmk
+docs/paper/*.synctex.gz
+docs/paper/main.pdf
+docs/paper/missfont.log
+docs/paper/*.tar.gz
+
+# Local copies of upstream PDFs (copyrighted; track digests/ instead)
+docs/relatedwork/*.pdf
+
+# Stray pdflatex artifacts from running from wrong cwd
+**/texput.log
+
+# Upstream FLPSI USENIX'21 paper sources (local reference only; not ours to redistribute)
+docs/FLPSI_usenix21/
+
+# auto-generated per-size network-bench configs (run.sh ensure_params)
+experiments/configs/gen_*.json
+
+# editor config
+.vscode/
+tests/scratch/*
+docs/paper/gemini-reviews
+experiments/_archive/

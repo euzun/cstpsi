@@ -1,0 +1,29 @@
+{
+  "name": "smoke_1k_N64_k2",
+  "description": "Lightweight smoke test: 1K enrollments, N=64, k=2 threshold (CSV format)",
+  "protocol_params": {
+    "N": 64
+  },
+  "database_params": {
+    "nrof_que_ids": 2
+  },
+  "performance_params": {
+    "m": 4096,
+    "partition_size": 32,
+    "nrof_splits": 1,
+    "nrof_collisions": 1,
+    "nrof_online_threads": 4
+  },
+  "seal_params": {
+    "poly_modulus_degree": 4096,
+    "plain_modulus": 8519681
+  },
+  "dataset": {
+    "format": "csv",
+    "enrollment_path": "experiments/results/smoke_test/enroll.csv",
+    "query_path": "experiments/results/smoke_test/query.csv",
+    "output_path": "experiments/results/smoke_test/results.csv",
+    "enr_bits": 10,
+    "enr_total": 1000
+  }
+}

@@ -1,0 +1,37 @@
+# Distributed two-party CSTPSI demo: sender and receiver run as separate
+# containers on a private network, exactly as two hosts would.
+#
+#   docker compose up --build      # build image (if needed) and run the demo
+#   docker compose down -v         # tear down and remove the shared data volume
+#
+# The sender generates the small synthetic dataset into a shared volume and
+# listens; the receiver waits for that data, connects over the compose network,
+# recovers the labels, and prints a summary. The sender exits after serving.
+name: cstpsi-demo
+
+services:
+  sender:
+    build: .
+    image: cstpsi:latest
+    command: ["demo-sender"]
+    networks: [cstpsi]
+    volumes:
+      - demo-data:/opt/cstpsi/demo/data
+
+  receiver:
+    image: cstpsi:latest
+    depends_on:
+      - sender
+    environment:
+      ADDR: sender      # compose DNS name of the sender service
+      PORT: "1212"
+    command: ["demo-receiver"]
+    networks: [cstpsi]
+    volumes:
+      - demo-data:/opt/cstpsi/demo/data
+
+networks:
+  cstpsi:
+
+volumes:
+  demo-data:

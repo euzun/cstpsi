@@ -1,0 +1,29 @@
+{
+  "name": "bench_10k",
+  "description": "CSTPSI benchmark: 10K enrollments, N=64, k=2, CSV format",
+  "protocol_params": {
+    "N": 64
+  },
+  "database_params": {
+    "nrof_que_ids": 20
+  },
+  "performance_params": {
+    "m": 4096,
+    "partition_size": 32,
+    "nrof_splits": 1,
+    "nrof_collisions": 1,
+    "nrof_online_threads": 1
+  },
+  "seal_params": {
+    "poly_modulus_degree": 4096,
+    "plain_modulus": 8519681
+  },
+  "dataset": {
+    "format": "csv",
+    "enrollment_path": "experiments/benchmark_datasets/enr_10k_lbl23bit.csv",
+    "query_path": "experiments/benchmark_datasets/qry_10k.csv",
+    "output_path": "experiments/benchmark_datasets/out_10k.csv",
+    "enr_bits": 14,
+    "enr_total": 10000
+  }
+}

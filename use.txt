@@ -1,0 +1,34 @@
+Intended use and limitations
+============================
+
+INTENDED USE
+  A research prototype and reproducibility artifact for Composable Set-Threshold
+  PSI (CSTPSI). It demonstrates the protocol end to end, lets reviewers run it on
+  their own inputs, and regenerates the paper's head-to-head performance table.
+  It is meant for evaluation and research, not production deployment. It is
+  licensed for noncommercial use (PolyForm Noncommercial License 1.0.0);
+  commercial use requires a separate license from the author.
+
+THREAT MODEL
+  Two-party, semi-honest (honest-but-curious). Both parties follow the protocol;
+  security holds against passive corruption of either party. There is no defense
+  against malicious deviation, and no protection for metadata such as set sizes,
+  which are assumed public.
+
+OPERATING RANGE / LIMITATIONS
+  - The construction targets small-to-moderate labels (a few identifiers).
+    Per-session communication grows linearly with label length, so very large
+    ("bulk") payloads are impractical.
+  - The matching threshold is fixed at k = 2 of N = 64 components in this build.
+  - The 1M-record cells are memory- and time-heavy; they are off by default in
+    the reproducibility script (enable with FULL=1).
+  - Timing is hardware-dependent. The reproducible claims are the speedup ratio
+    of CSTPSI over the baseline, the communication saving, and the zero
+    false-reject / zero false-accept (at T=2) correctness, not absolute latency.
+  - Networking uses the loopback interface by default; the demo and benchmarks
+    simulate a fast link and are not hardened for adversarial networks.
+
+DATA
+  All datasets used by the demo and the reproducibility claim are synthetic and
+  generated locally by experiments/datagen.py. No real or sensitive data is
+  included or required.
